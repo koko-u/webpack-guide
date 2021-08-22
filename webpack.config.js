@@ -9,9 +9,7 @@ const miniCssExtractPluginOptions = {
 const htmlWebpackPluginOptions = {
   title: "動作テスト",
   filename: "index.html",
-  template: "src/template/index.html",
-  inject: true,
-  scriptLoading: "defer",
+  template: "src/template/index.pug",
 };
 
 const cssLoaderRule = {
@@ -28,6 +26,15 @@ const cssLoaderRule = {
 const imageAssetsRule = {
   test: /\.(png|jpg|jpeg|gif)$/,
   type: "asset/resource"
+}
+
+const pugLoaderRule = {
+  test: /\.pug$/,
+  use: [
+    {
+      loader: "pug-loader",
+    },
+  ],
 }
 
 const WebpackConfig = {
@@ -47,6 +54,7 @@ const WebpackConfig = {
     rules: [
       cssLoaderRule,
       imageAssetsRule,
+      pugLoaderRule,
     ],
   },
   plugins: [
