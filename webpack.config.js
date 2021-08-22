@@ -1,5 +1,6 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const cleanWebpackPluginOptions = {
   cleanOnceBeforeBuildPatterns: [
@@ -8,13 +9,14 @@ const cleanWebpackPluginOptions = {
   ],
 }
 
+const miniCssExtractPluginOptions = {
+  filename: "styles.css"
+}
+
 const cssLoaderRule = {
   test: /\.css$/,
   use: [
-    {
-      loader: "style-loader",
-      options: {},
-    },
+    MiniCssExtractPlugin.loader,
     {
       loader: "css-loader",
       options: {},
@@ -35,6 +37,7 @@ const WebpackConfig = {
   },
   plugins: [
     new CleanWebpackPlugin(cleanWebpackPluginOptions),
+    new MiniCssExtractPlugin(miniCssExtractPluginOptions)
   ],
 };
 
