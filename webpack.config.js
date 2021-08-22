@@ -9,7 +9,7 @@ const miniCssExtractPluginOptions = {
 const htmlWebpackPluginOptions = {
   title: "動作テスト",
   filename: "index.html",
-  template: "src/index.html",
+  template: "src/template/index.html",
   inject: true,
   scriptLoading: "defer",
 };
@@ -26,11 +26,16 @@ const cssLoaderRule = {
 }
 
 const WebpackConfig = {
-  entry: "./src/index.js",
+  entry: "./src/js/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/index.js",
     clean: true,
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve("src")
+    }
   },
   module: {
     rules: [
