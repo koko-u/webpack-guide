@@ -1,14 +1,6 @@
 const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const cleanWebpackPluginOptions = {
-  cleanOnceBeforeBuildPatterns: [
-    "**/*",
-    "!index.html",
-  ],
-};
 
 const miniCssExtractPluginOptions = {
   filename: "styles.css"
@@ -37,7 +29,8 @@ const WebpackConfig = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index.js"
+    filename: "index.js",
+    clean: true,
   },
   module: {
     rules: [
@@ -45,7 +38,6 @@ const WebpackConfig = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(cleanWebpackPluginOptions),
     new MiniCssExtractPlugin(miniCssExtractPluginOptions),
     new HtmlWebpackPlugin(htmlWebpackPluginOptions),
   ],
