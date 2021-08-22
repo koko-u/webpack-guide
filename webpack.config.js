@@ -1,17 +1,12 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {
+  createHtmlWebpackPluginOptions,
+  htmlWebpackPluginOptions
+} = require('./html-webpack-plugin-config');
 
 const miniCssExtractPluginOptions = {
   filename: "css/styles.css"
-};
-
-const htmlWebpackPluginOptions = {
-  title: "動作テスト",
-  filename: "index.html",
-  template: "src/template/index.html",
-  inject: true,
-  scriptLoading: "defer",
 };
 
 const cssLoaderRule = {
@@ -28,6 +23,15 @@ const cssLoaderRule = {
 const imageAssetsRule = {
   test: /\.(png|jpg|jpeg|gif)$/,
   type: "asset/resource"
+}
+
+const pugLoaderRule = {
+  test: /\.pug$/,
+  use: [
+    {
+      loader: "pug-loader",
+    },
+  ],
 }
 
 const WebpackConfig = {
@@ -47,11 +51,12 @@ const WebpackConfig = {
     rules: [
       cssLoaderRule,
       imageAssetsRule,
+      pugLoaderRule,
     ],
   },
   plugins: [
     new MiniCssExtractPlugin(miniCssExtractPluginOptions),
-    new HtmlWebpackPlugin(htmlWebpackPluginOptions),
+    ...createHtmlWebpackPluginOptions(htmlWebpackPluginOptions)
   ],
 };
 
