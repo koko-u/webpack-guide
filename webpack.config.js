@@ -25,11 +25,17 @@ const cssLoaderRule = {
   ]
 }
 
+const imageAssetsRule = {
+  test: /\.(png|jpg|jpeg|gif)$/,
+  type: "asset/resource"
+}
+
 const WebpackConfig = {
   entry: "./src/js/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/index.js",
+    assetModuleFilename: "img/[name][ext]",
     clean: true,
   },
   resolve: {
@@ -40,6 +46,7 @@ const WebpackConfig = {
   module: {
     rules: [
       cssLoaderRule,
+      imageAssetsRule,
     ],
   },
   plugins: [
