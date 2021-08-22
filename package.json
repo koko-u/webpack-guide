@@ -1,0 +1,11 @@
+{
+  "name": "webpack-guide",
+  "description": "Webpack Learning",
+  "private": true,
+  "author": {
+    "name": "KOZAKI Tsuneaki",
+    "email": "kozaki.tsuneaki@gmail.com"
+  },
+  "license": "MIT",
+  "packageManager": "yarn@3.0.0"
+}
