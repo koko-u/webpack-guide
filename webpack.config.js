@@ -1,15 +1,12 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {
+  createHtmlWebpackPluginOptions,
+  htmlWebpackPluginOptions
+} = require('./html-webpack-plugin-config');
 
 const miniCssExtractPluginOptions = {
   filename: "css/styles.css"
-};
-
-const htmlWebpackPluginOptions = {
-  title: "動作テスト",
-  filename: "index.html",
-  template: "src/template/index.pug",
 };
 
 const cssLoaderRule = {
@@ -59,7 +56,7 @@ const WebpackConfig = {
   },
   plugins: [
     new MiniCssExtractPlugin(miniCssExtractPluginOptions),
-    new HtmlWebpackPlugin(htmlWebpackPluginOptions),
+    ...createHtmlWebpackPluginOptions(htmlWebpackPluginOptions)
   ],
 };
 
