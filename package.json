@@ -9,11 +9,15 @@
   "license": "MIT",
   "packageManager": "yarn@3.0.0",
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^6.2.0",
+    "style-loader": "^3.2.1",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0"
   },
   "scripts": {
     "build": "webpack",
-    "build:dev": "webpack --mode development"
+    "build:dev": "webpack --mode development",
+    "build:watch": "webpack --mode development --watch --progress"
   }
 }
