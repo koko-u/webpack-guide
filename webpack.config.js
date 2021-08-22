@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const miniCssExtractPluginOptions = {
-  filename: "styles.css"
+  filename: "css/styles.css"
 };
 
 const htmlWebpackPluginOptions = {
@@ -29,7 +29,7 @@ const WebpackConfig = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index.js",
+    filename: "js/index.js",
     clean: true,
   },
   module: {
