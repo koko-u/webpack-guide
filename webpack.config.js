@@ -1,23 +1,15 @@
 const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const cleanWebpackPluginOptions = {
-  cleanOnceBeforeBuildPatterns: [
-    "**/*",
-    "!index.html",
-  ],
-};
-
 const miniCssExtractPluginOptions = {
-  filename: "styles.css"
+  filename: "css/styles.css"
 };
 
 const htmlWebpackPluginOptions = {
   title: "動作テスト",
   filename: "index.html",
-  template: "src/index.html",
+  template: "src/template/index.html",
   inject: true,
   scriptLoading: "defer",
 };
@@ -34,10 +26,16 @@ const cssLoaderRule = {
 }
 
 const WebpackConfig = {
-  entry: "./src/index.js",
+  entry: "./src/js/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index.js"
+    filename: "js/index.js",
+    clean: true,
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve("src")
+    }
   },
   module: {
     rules: [
@@ -45,7 +43,6 @@ const WebpackConfig = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(cleanWebpackPluginOptions),
     new MiniCssExtractPlugin(miniCssExtractPluginOptions),
     new HtmlWebpackPlugin(htmlWebpackPluginOptions),
   ],
